@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CentreTableViewController.h
 //  DataPod
 //
 //  Created by Fabio General on 1/7/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface CentreTableViewController : UITableViewController
 
 @end
-
