@@ -7,8 +7,11 @@
 //
 
 #import "CentreTableViewController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface CentreTableViewController ()
+
+@property (nonatomic) NSMutableArray *centre;
 
 @end
 
@@ -16,6 +19,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.centre = [NSMutableArray new]; // new is essencial
+    
+    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.westfield.io/v1/"]];
+    [sessionManager GET:@"centres" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        NSArray *centres = responseObject[@"data"];
+        for (NSDictionary *dict in centres) {
+            [self.centre addObject:@{
+                                     @"title" : dict[@"short_name"],
+                                     @"subtitle" : dict[@"state"],
+                                     }];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{ // block necessary to external data
+            [self.tableView reloadData];
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -36,18 +57,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return [self.centre count];
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    NSDictionary *label = self.centre[indexPath.row];
+    cell.textLabel.text = label[@"title"];
+    cell.detailTextLabel.text = label[@"subtitle"];
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
