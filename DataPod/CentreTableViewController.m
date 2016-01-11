@@ -22,7 +22,7 @@
     
     self.centre = [NSMutableArray new]; // new is essencial
 
-// Essay to show the keys short_name and state of westfield api
+#pragma mark - Essay to show the keys short_name and state of westfield api
 
 //    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.westfield.io/v1/"]];
 //    [sessionManager GET:@"centres" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
@@ -40,27 +40,63 @@
 //        NSLog(@"%@", error);
 //    }];
     
-// Essay to show the data of westfield api to San Francisco
+#pragma mark - Essay to show the San Francisco westfield api data
     
+//    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.westfield.io/v1/"]];
+//    [sessionManager GET:@"centres" parameters:@{ @"centre_id" : @"sanfrancisco" } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//        NSDictionary *sfcentre = responseObject[@"data"][0];
+//        for (NSString *key in [sfcentre allKeys]) {
+//            if ([[sfcentre objectForKey:key] isKindOfClass:[NSString class]]) {
+//                [self.centre addObject:@{
+//                                         @"title" : [key capitalizedString],
+//                                         @"subtitle" : [sfcentre objectForKey:key],
+//                                         }];
+//            }
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{ // block necessary to external data
+//            [self.tableView reloadData];
+//        });
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"%@", error);
+//    }];
+    
+#pragma mark - Essay to show the San Francisco westfield api deals
+    
+//      AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.westfield.io/v1/"]];
+//      [sessionManager GET:@"deals" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//          NSArray *sfdeals = responseObject[@"data"];
+//          for (NSDictionary *dict in sfdeals) {
+//                  [self.centre addObject:@{
+//                                           @"title" : dict[@"name"], ?????? no access
+//                                           @"subtitle" : dict[@"title"],
+//                                           }];
+//          }
+//          dispatch_async(dispatch_get_main_queue(), ^{ // block necessary to external data
+//              [self.tableView reloadData];
+//          });
+//      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//          NSLog(@"%@", error);
+//      }];
+ 
+    
+// showing deals allkeys
     AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.westfield.io/v1/"]];
-    [sessionManager GET:@"centres" parameters:@{ @"centre_id" : @"sanfrancisco" } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [sessionManager GET:@"retailers" parameters:@{ @"centre_id" : @"sanfrancisco" } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSDictionary *sfcentre = responseObject[@"data"][0];
-        for (NSString *key in [sfcentre allKeys]) {
-            if ([[sfcentre objectForKey:key] isKindOfClass:[NSString class]]) {
-                [self.centre addObject:@{
-                                         @"title" : [key capitalizedString],
-                                         @"subtitle" : [sfcentre objectForKey:key],
-                                         }];
-            }
-        }
+                for (NSString *key in [sfcentre allKeys]) {
+                    if ([[sfcentre objectForKey:key] isKindOfClass:[NSString class]]) {
+                        [self.centre addObject:@{
+                                                 @"title" : [key capitalizedString],
+                                                 @"subtitle" : [sfcentre objectForKey:key],
+                                                 }];
+                    }
+                }
         dispatch_async(dispatch_get_main_queue(), ^{ // block necessary to external data
             [self.tableView reloadData];
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
-    
-// Essay to show the deals of westfield api to San Francisco
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
