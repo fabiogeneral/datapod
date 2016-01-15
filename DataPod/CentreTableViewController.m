@@ -62,41 +62,48 @@
     
 #pragma mark - Essay to show the San Francisco westfield api deals
     
-//      AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.westfield.io/v1/"]];
-//      [sessionManager GET:@"deals" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//          NSArray *sfdeals = responseObject[@"data"];
-//          for (NSDictionary *dict in sfdeals) {
-//                  [self.centre addObject:@{
-//                                           @"title" : dict[@"name"], ?????? no access
-//                                           @"subtitle" : dict[@"title"],
-//                                           }];
-//          }
-//          dispatch_async(dispatch_get_main_queue(), ^{ // block necessary to external data
-//              [self.tableView reloadData];
-//          });
-//      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//          NSLog(@"%@", error);
-//      }];
- 
+      AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.westfield.io/v1/"]];
+      [sessionManager GET:@"deals" parameters:@{ @"centre_id" : @"sanfrancisco" } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+          NSArray *sfdeals = responseObject[@"data"];
+          for (NSDictionary *dict in sfdeals) {
+                  [self.centre addObject:@{
+                                           //@"image" : dict[],
+                                           //@"title" : dict[@"title"],
+                                           @"title" : [dict[@"_links"][@"retailer"] objectForKey:@"name"], // retailer
+                                           @"subtitle" : [dict[@"_links"][@"image"][@"href"] description], // image
+                                           //@"expires" : dict[@"ends_at"],
+                                           //@"retailer" : dict[@],
+                                           ///////////// others examples
+                                           //@"title" : [dict[@"deal_id"] description], // example of non string
+                                           //@"name" : [dict[@"stores"][0] objectForKey:@"centre_id"], // example of string inside array
+                                           //@"name" : [dict[@"_links"][@"retailer"] objectForKey:@"name"], // example of dictionary inside dictionary
+                                           }];
+          }
+          dispatch_async(dispatch_get_main_queue(), ^{ // block necessary to external data
+              [self.tableView reloadData];
+          });
+      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+          NSLog(@"%@", error);
+      }];
     
-// showing deals allkeys
-    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.westfield.io/v1/"]];
-    [sessionManager GET:@"retailers" parameters:@{ @"centre_id" : @"sanfrancisco" } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        NSDictionary *sfcentre = responseObject[@"data"][0];
-                for (NSString *key in [sfcentre allKeys]) {
-                    if ([[sfcentre objectForKey:key] isKindOfClass:[NSString class]]) {
-                        [self.centre addObject:@{
-                                                 @"title" : [key capitalizedString],
-                                                 @"subtitle" : [sfcentre objectForKey:key],
-                                                 }];
-                    }
-                }
-        dispatch_async(dispatch_get_main_queue(), ^{ // block necessary to external data
-            [self.tableView reloadData];
-        });
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", error);
-    }];
+// showing deals allkeys san francisco
+//    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.westfield.io/v1/"]];
+//    [sessionManager GET:@"deals" parameters:@{ @"centre_id" : @"sanfrancisco" } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//        NSDictionary *sfcentre = responseObject[@"data"][0];
+//                for (NSString *key in [sfcentre allKeys]) {
+//                    if ([[sfcentre objectForKey:key] isKindOfClass:[NSString class]]) {
+//                        [self.centre addObject:@{
+//                                                 @"title" : [key capitalizedString],
+//                                                 @"subtitle" : [sfcentre objectForKey:key],
+//                                                 }];
+//                    }
+//                }
+//        dispatch_async(dispatch_get_main_queue(), ^{ // block necessary to external data
+//            [self.tableView reloadData];
+//        });
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"%@", error);
+//    }];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
