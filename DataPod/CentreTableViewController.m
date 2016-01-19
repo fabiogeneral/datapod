@@ -8,6 +8,7 @@
 
 #import "CentreTableViewController.h"
 #import <AFNetworking/AFNetworking.h>
+#import "CentreTableViewCell.h"
 
 @interface CentreTableViewController ()
 
@@ -67,14 +68,12 @@
           NSArray *sfdeals = responseObject[@"data"];
           for (NSDictionary *dict in sfdeals) {
                   [self.centre addObject:@{
-                                           //@"image" : dict[],
-                                           //@"title" : dict[@"title"],
-                                           @"title" : [dict[@"_links"][@"retailer"] objectForKey:@"name"], // retailer
-                                           @"subtitle" : [dict[@"_links"][@"image"][@"href"] description], // image
-                                           //@"expires" : dict[@"ends_at"],
-                                           //@"retailer" : dict[@],
+                                           @"image" : [dict[@"_links"][@"image"][@"href"] description],
+                                           @"title" : dict[@"title"],
+                                           @"expires" : dict[@"ends_at"],
+                                           @"retailer" : [dict[@"_links"][@"retailer"] objectForKey:@"name"],
                                            ///////////// others examples
-                                           //@"title" : [dict[@"deal_id"] description], // example of non string
+                                           //@"name" : [dict[@"deal_id"] description], // example of non string
                                            //@"name" : [dict[@"stores"][0] objectForKey:@"centre_id"], // example of string inside array
                                            //@"name" : [dict[@"_links"][@"retailer"] objectForKey:@"name"], // example of dictionary inside dictionary
                                            }];
@@ -127,12 +126,21 @@
     return [self.centre count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 78;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    CentreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CentreTableViewCell" owner:self options:nil];
+    cell = [nib firstObject];
     
     NSDictionary *label = self.centre[indexPath.row];
-    cell.textLabel.text = label[@"title"];
-    cell.detailTextLabel.text = label[@"subtitle"];
+    cell.thumbImageView.image = [UIImage imageNamed:@"lgrtdnonhhy7hxdhqi45.jpg"];
+    cell.retailerName.text = label[@"retailer"];
+    cell.title.text = label[@"title"];
+    cell.expiresDate.text = label[@"expires"];
     
     return cell;
 }

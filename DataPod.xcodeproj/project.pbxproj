@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23AE068B1C488B7A00F7F057 /* CentreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23AE068A1C488B7A00F7F057 /* CentreTableViewCell.xib */; };
+		23AE068E1C488F0800F7F057 /* CentreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23AE068D1C488F0800F7F057 /* CentreTableViewCell.m */; };
 		23D9895E1C3EFAD100CED991 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D9895D1C3EFAD100CED991 /* main.m */; };
 		23D989611C3EFAD100CED991 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D989601C3EFAD100CED991 /* AppDelegate.m */; };
 		23D989671C3EFAD100CED991 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23D989651C3EFAD100CED991 /* Main.storyboard */; };
@@ -19,6 +21,9 @@
 /* Begin PBXFileReference section */
 		09AF8C2CAD585E1AC57C7A16 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1500B7C22140623AC9D592CC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		23AE068A1C488B7A00F7F057 /* CentreTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CentreTableViewCell.xib; sourceTree = "<group>"; };
+		23AE068C1C488F0800F7F057 /* CentreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CentreTableViewCell.h; sourceTree = "<group>"; };
+		23AE068D1C488F0800F7F057 /* CentreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CentreTableViewCell.m; sourceTree = "<group>"; };
 		23D989591C3EFAD100CED991 /* DataPod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataPod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D9895D1C3EFAD100CED991 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		23D9895F1C3EFAD100CED991 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -68,12 +73,15 @@
 				23D9895F1C3EFAD100CED991 /* AppDelegate.h */,
 				23D989601C3EFAD100CED991 /* AppDelegate.m */,
 				23D989651C3EFAD100CED991 /* Main.storyboard */,
-				23D989681C3EFAD100CED991 /* Assets.xcassets */,
+				23AE068A1C488B7A00F7F057 /* CentreTableViewCell.xib */,
 				23D9896A1C3EFAD100CED991 /* LaunchScreen.storyboard */,
+				23D989681C3EFAD100CED991 /* Assets.xcassets */,
 				23D9896D1C3EFAD100CED991 /* Info.plist */,
 				23D9895C1C3EFAD100CED991 /* Supporting Files */,
 				23D989731C3EFED900CED991 /* CentreTableViewController.h */,
 				23D989741C3EFED900CED991 /* CentreTableViewController.m */,
+				23AE068C1C488F0800F7F057 /* CentreTableViewCell.h */,
+				23AE068D1C488F0800F7F057 /* CentreTableViewCell.m */,
 			);
 			path = DataPod;
 			sourceTree = "<group>";
@@ -164,6 +172,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23AE068B1C488B7A00F7F057 /* CentreTableViewCell.xib in Resources */,
 				23D9896C1C3EFAD100CED991 /* LaunchScreen.storyboard in Resources */,
 				23D989691C3EFAD100CED991 /* Assets.xcassets in Resources */,
 				23D989671C3EFAD100CED991 /* Main.storyboard in Resources */,
@@ -225,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23AE068E1C488F0800F7F057 /* CentreTableViewCell.m in Sources */,
 				23D989611C3EFAD100CED991 /* AppDelegate.m in Sources */,
 				23D989751C3EFED900CED991 /* CentreTableViewController.m in Sources */,
 				23D9895E1C3EFAD100CED991 /* main.m in Sources */,
