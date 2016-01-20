@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface CentreTableViewCell : UITableViewCell
-
 @property (nonatomic, weak) IBOutlet UIImageView *thumbImageView;
 @property (nonatomic, weak) IBOutlet UILabel *retailerName;
 @property (nonatomic, weak) IBOutlet UILabel *title;
 @property (nonatomic, weak) IBOutlet UILabel *expiresDate;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *spinner;
+
+@property (nonatomic) NSURL *imageURL;
+@property (nonatomic) UIImage *image;
 
 @end

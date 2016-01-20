@@ -137,7 +137,10 @@
     cell = [nib firstObject];
     
     NSDictionary *label = self.centre[indexPath.row];
-    cell.thumbImageView.image = [UIImage imageNamed:@"lgrtdnonhhy7hxdhqi45.jpg"];
+    //cell.thumbImageView.image = [UIImage imageNamed:@"lgrtdnonhhy7hxdhqi45.jpg"]; //test
+    //NSString *imageData = @"http://res.cloudinary.com/wlabs/image/upload/oaoy6vz9mxxcyv6wphxu.jpg"; // test
+    // IMPORTANT ::: It's necessary add a row in .plist file - App Transport Security Settings dictionary and inside Allow Arbitrary Loads YES (because is not https)
+    cell.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", label[@"image"]]];
     cell.retailerName.text = label[@"retailer"];
     cell.title.text = label[@"title"];
     cell.expiresDate.text = label[@"expires"];
