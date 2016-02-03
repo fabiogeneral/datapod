@@ -24,6 +24,8 @@
     self.centre = [NSMutableArray new]; // new is essencial
 
 #pragma mark - Essay to show the keys short_name and state of westfield api
+    
+    // swagger - https://api.westfield.io/#/
 
 //    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.westfield.io/v1/"]];
 //    [sessionManager GET:@"centres" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
@@ -85,7 +87,7 @@
           NSLog(@"%@", error);
       }];
     
-// showing deals allkeys san francisco
+// showing deals allkeys san francisco - https://api.westfield.io/v1/deals?centre_id=sanfrancisco
 //    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.westfield.io/v1/"]];
 //    [sessionManager GET:@"deals" parameters:@{ @"centre_id" : @"sanfrancisco" } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
 //        NSDictionary *sfcentre = responseObject[@"data"][0];
